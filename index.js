@@ -1,8 +1,11 @@
-var app = require('express')();
+var express = require('express');
+var app = express();
 var http = require('http').Server(app);
+app.use('/public', express.static(__dirname + '/public'));
+
 
 app.get('/', function(request, response){
-	response.send('<h1>Fun-timey Chat App Welcomes You!</h1>');
+	response.sendFile(__dirname + '/index.html');
 });
 
 http.listen(3000, function(){
