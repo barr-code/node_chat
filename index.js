@@ -11,7 +11,12 @@ app.get('/', function(request, response){
 });
 
 io.on('connection', function(socket){
-	console.log('Some doofus connected');
+	socket.on('chatmessage', function(msg){
+		console.log('message: ' + msg);
+	});
+	socket.on('disconnect', function(){
+		console.log('The doofus is disconnected now.')
+	});
 });
 
 http.listen(3000, function(){
